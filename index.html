@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026™ Visual Bracket & Journey Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: radial-gradient(circle at center, #0a192f 0%, #020c1b 100%);
+            color: #ffffff;
+        }
+        .heading-font {
+            font-family: 'Oswald', sans-serif;
+        }
+        .bracket-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .bracket-container::-webkit-scrollbar-thumb {
+            background-color: #d4af37;
+            border-radius: 3px;
+        }
+        .match-box {
+            background: linear-gradient(135deg, rgba(16, 28, 48, 0.95) 0%, rgba(7, 15, 28, 0.98) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            transition: all 0.2s ease-in-out;
+        }
+        .match-box:hover {
+            border-color: rgba(212, 175, 55, 0.7);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.4);
+        }
+        .winner-bg {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15) 0%, rgba(0,0,0,0) 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden p-2 md:p-4">
+
+    <header class="text-center my-3 select-none">
+        <h1 class="heading-font text-3xl md:text-5xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-amber-400 uppercase">
+            2026 FIFA World Cup™
+        </h1>
+        <p class="text-amber-400 uppercase tracking-widest font-semibold text-xs md:text-sm mt-1">
+            Visual Knockout Bracket & Dynamic Match Explorer
+        </p>
+    </header>
+
+    <div class="max-w-[1600px] mx-auto w-full grid grid-cols-7 text-center text-[11px] font-bold tracking-widest text-amber-400/70 uppercase border-b border-slate-800 pb-1 mb-2 px-4 select-none min-w-[1600px]">
+        <div>Round of 32</div>
+        <div>Round of 16</div>
+        <div>Quarter-Finals</div>
+        <div class="text-white text-xs">Podium & Finals</div>
+        <div>Quarter-Finals</div>
+        <div>Round of 16</div>
+        <div>Round of 32</div>
+    </div>
+
+    <main class="bracket-container flex-1 overflow-x-auto flex items-center py-4 px-2">
+        <div class="flex flex-row items-center gap-10 min-w-[1600px] mx-auto justify-between px-4 relative h-[880px]">
+            
+            <div class="flex flex-col justify-between h-full py-2">
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('GER')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/de.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Germany</span></div>
+                        <span class="text-gray-400">1 (3)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('PAR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/py.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Paraguay</span></div>
+                        <span class="text-amber-400 font-bold">1 (4)</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('FRA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/fr.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">France</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('SWE')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/se.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Sweden</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('RSA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/za.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>South Africa</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('CAN')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ca.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Canada</span></div>
+                        <span class="text-amber-400 font-bold">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('NED')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/nl.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Netherlands</span></div>
+                        <span class="text-gray-400">1 (2)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('MAR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ma.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Morocco</span></div>
+                        <span class="text-amber-400 font-bold">1 (3)</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('POR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/pt.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Portugal</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('CRO')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/hr.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Croatia</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ESP')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/es.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Spain</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('AUT')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/at.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Austria</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('USA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/us.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">United States</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('BIH')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ba.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Bosnia & Herz.</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('BEL')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/be.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Belgium</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('SEN')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/sn.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Senegal</span></div>
+                        <span class="text-gray-400">2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-around h-full py-12">
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('PAR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/py.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Paraguay</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('FRA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/fr.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">France</span></div>
+                        <span class="text-amber-400 font-bold">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('CAN')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ca.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Canada</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('MAR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ma.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Morocco</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('POR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/pt.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Portugal</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ESP')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/es.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Spain</span></div>
+                        <span class="text-amber-400 font-bold">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('USA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/us.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>United States</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('BEL')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/be.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Belgium</span></div>
+                        <span class="text-amber-400 font-bold">4</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-around h-full py-28">
+                <div class="match-box rounded-lg p-2 w-48 text-xs border-amber-400/40 bg-slate-900/90 shadow-lg">
+                    <div class="text-[9px] text-amber-400 font-bold tracking-wider mb-1">QUARTER-FINAL 1</div>
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('FRA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/fr.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>France</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('MAR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ma.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Morocco</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="text-[9px] text-gray-400 mt-1.5 text-center">10 Jul, 2:00 AM (BD)</div>
+                </div>
+                <div class="match-box rounded-lg p-2 w-48 text-xs border-amber-400/40 bg-slate-900/90 shadow-lg">
+                    <div class="text-[9px] text-amber-400 font-bold tracking-wider mb-1">QUARTER-FINAL 2</div>
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('ESP')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/es.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Spain</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('BEL')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/be.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Belgium</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="text-[9px] text-gray-400 mt-1.5 text-center">11 Jul, 1:00 AM (BD)</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-between items-center w-52 h-[600px] my-auto select-none">
+                <div class="w-full match-box rounded-lg p-2 text-center border-dashed border-amber-500/40 bg-black/40">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Semi-Final 1</div>
+                    <div class="text-xs text-amber-400/80 py-1 font-medium">Winner QF1 vs Winner QF2</div>
+                    <div class="text-[9px] text-gray-500">15 Jul, 1:00 AM (BD)</div>
+                </div>
+
+                <div class="text-center my-4 relative">
+                    <div class="text-6xl filter drop-shadow-[0_0_20px_rgba(212,175,55,0.7)]">🏆</div>
+                    <div class="heading-font font-bold tracking-widest text-amber-400 uppercase mt-2 text-lg">CHAMPION</div>
+                    
+                    <div class="match-box rounded-lg p-2.5 w-48 mt-3 mx-auto text-xs bg-slate-950 border-amber-400">
+                        <div class="text-[10px] font-bold text-amber-400 tracking-wider mb-1">GRAND FINAL MATCH</div>
+                        <div class="text-slate-400 italic py-1">Awaiting Finalists</div>
+                        <div class="text-[9px] text-gray-500 border-t border-slate-800 pt-1 mt-1">20 Jul, 1:00 AM (BD)</div>
+                    </div>
+                    <div class="text-[9px] text-slate-400 bg-slate-900 border border-slate-800 mt-2 px-2 py-0.5 rounded shadow">
+                        3rd Place: 19 Jul, 3:00 AM
+                    </div>
+                </div>
+
+                <div class="w-full match-box rounded-lg p-2 text-center border-dashed border-amber-500/40 bg-black/40">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Semi-Final 2</div>
+                    <div class="text-xs text-amber-400/80 py-1 font-medium">Winner QF3 vs Winner QF4</div>
+                    <div class="text-[9px] text-gray-500">16 Jul, 1:00 AM (BD)</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-around h-full py-28">
+                <div class="match-box rounded-lg p-2 w-48 text-xs border-amber-400/40 bg-slate-900/90 shadow-lg">
+                    <div class="text-[9px] text-amber-400 font-bold tracking-wider mb-1">QUARTER-FINAL 3</div>
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('NOR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/no.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Norway</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('ENG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/gb-eng.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>England</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="text-[9px] text-gray-400 mt-1.5 text-center">12 Jul, 3:00 AM (BD)</div>
+                </div>
+                <div class="match-box rounded-lg p-2 w-48 text-xs border-amber-400/40 bg-slate-900/90 shadow-lg">
+                    <div class="text-[9px] text-amber-400 font-bold tracking-wider mb-1">QUARTER-FINAL 4</div>
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('ARG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ar.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Argentina</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('SUI')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ch.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Switzerland</span></div>
+                        <span class="text-amber-400">-</span>
+                    </div>
+                    <div class="text-[9px] text-gray-400 mt-1.5 text-center">12 Jul, 7:00 AM (BD)</div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-around h-full py-12">
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('BRA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/br.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Brazil</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('NOR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/no.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Norway</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('MEX')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/mx.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Mexico</span></div>
+                        <span class="text-gray-400">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ENG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/gb-eng.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">England</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ARG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ar.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Argentina</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('EGY')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/eg.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Egypt</span></div>
+                        <span class="text-gray-400">2</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('SUI')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ch.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Switzerland</span></div>
+                        <span class="text-amber-400 font-bold">0 (4)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('COL')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/co.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Colombia</span></div>
+                        <span class="text-gray-400">0 (3)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-between h-full py-2">
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('BRA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/br.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Brazil</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('JPN')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/jp.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Japan</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('CIV')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ci.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Ivory Coast</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('NOR')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/no.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Norway</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('MEX')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/mx.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Mexico</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('ECU')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ec.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Ecuador</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ENG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/gb-eng.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">England</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('COD')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/cd.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>DR Congo</span></div>
+                        <span class="text-gray-400">1</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('ARG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ar.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Argentina</span></div>
+                        <span class="text-amber-400 font-bold">3</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('CPV')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/cv.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Cape Verde</span></div>
+                        <span class="text-gray-400">2</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('AUS')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/au.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Australia</span></div>
+                        <span class="text-gray-400">1 (2)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('EGY')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/eg.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Egypt</span></div>
+                        <span class="text-amber-400 font-bold">1 (4)</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('SUI')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/ch.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Switzerland</span></div>
+                        <span class="text-amber-400 font-bold">2</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('ALG')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/dz.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Algeria</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+                <div class="match-box rounded-lg p-1.5 w-44 text-xs">
+                    <div class="flex items-center justify-between p-1 cursor-pointer hover:bg-slate-800 rounded winner-bg" onclick="openModal('COL')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/co.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span class="text-amber-400 font-semibold">Colombia</span></div>
+                        <span class="text-amber-400 font-bold">1</span>
+                    </div>
+                    <div class="flex items-center justify-between p-1 mt-0.5 cursor-pointer hover:bg-slate-800 rounded" onclick="openModal('GHA')">
+                        <div class="flex items-center gap-1.5"><img src="https://flagcdn.com/gh.svg" class="w-5 h-3.5 object-cover rounded-sm"> <span>Ghana</span></div>
+                        <span class="text-gray-400">0</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="infoModal" class="fixed inset-0 bg-black/85 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4">
+        <div class="match-box w-full max-w-md rounded-xl overflow-hidden shadow-2xl transform scale-95 duration-200">
+            <div class="flex items-center justify-between p-4 border-b border-amber-500/30 bg-slate-900">
+                <div class="flex items-center gap-3">
+                    <img id="mFlag" src="" class="w-8 h-5 object-cover rounded shadow">
+                    <h2 id="mName" class="heading-font text-xl font-bold tracking-wide text-white"></h2>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-amber-400 font-bold text-xl px-2">&times;</button>
+            </div>
+            <div class="p-5 flex flex-col gap-4 bg-slate-950/50">
+                <div>
+                    <h3 class="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Match History Journey</h3>
+                    <div id="mHistory" class="flex flex-col gap-2 text-xs"></div>
+                </div>
+                <div>
+                    <h3 class="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-1.5">Current Status / Next Step</h3>
+                    <div id="mNext" class="bg-slate-900/60 p-2.5 rounded border border-slate-800 text-xs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tournamentDb = {
+            GER: { name: "Germany", flag: "https://flagcdn.com/de.svg", prev: ["Round of 32: Drew 1-1 vs Paraguay (Lost 3-4 on penalty shootout)"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            PAR: { name: "Paraguay", flag: "https://flagcdn.com/py.svg", prev: ["Round of 32: Drew 1-1 vs Germany (Won 4-3 on penalty shootout)", "Round of 16: Lost 0-1 vs France"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            FRA: { name: "France", flag: "https://flagcdn.com/fr.svg", prev: ["Round of 32: Won 3-0 vs Sweden", "Round of 16: Won 1-0 vs Paraguay"], next: "Scheduled: Quarter-Finals vs Morocco<br><span class='text-amber-400 font-bold'>10 Jul, 2:00 AM BD Time</span>" },
+            SWE: { name: "Sweden", flag: "https://flagcdn.com/se.svg", prev: ["Round of 32: Lost 0-3 vs France"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            RSA: { name: "South Africa", flag: "https://flagcdn.com/za.svg", prev: ["Round of 32: Lost 0-1 vs Canada"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            CAN: { name: "Canada", flag: "https://flagcdn.com/ca.svg", prev: ["Round of 32: Won 1-0 vs South Africa", "Round of 16: Lost 0-3 vs Morocco"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            NED: { name: "Netherlands", flag: "https://flagcdn.com/nl.svg", prev: ["Round of 32: Drew 1-1 vs Morocco (Lost 2-3 on penalty shootout)"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            MAR: { name: "Morocco", flag: "https://flagcdn.com/ma.svg", prev: ["Round of 32: Drew 1-1 vs Netherlands (Won 3-2 on penalty shootout)", "Round of 16: Won 3-0 vs Canada"], next: "Scheduled: Quarter-Finals vs France<br><span class='text-amber-400 font-bold'>10 Jul, 2:00 AM BD Time</span>" },
+            POR: { name: "Portugal", flag: "https://flagcdn.com/pt.svg", prev: ["Round of 32: Won 2-1 vs Croatia", "Round of 16: Lost 0-1 vs Spain"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            CRO: { name: "Croatia", flag: "https://flagcdn.com/hr.svg", prev: ["Round of 32: Lost 1-2 vs Portugal"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            ESP: { name: "Spain", flag: "https://flagcdn.com/es.svg", prev: ["Round of 32: Won 3-0 vs Austria", "Round of 16: Won 1-0 vs Portugal"], next: "Scheduled: Quarter-Finals vs Belgium<br><span class='text-amber-400 font-bold'>11 Jul, 1:00 AM BD Time</span>" },
+            AUT: { name: "Austria", flag: "https://flagcdn.com/at.svg", prev: ["Round of 32: Lost 0-3 vs Spain"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            USA: { name: "United States", flag: "https://flagcdn.com/us.svg", prev: ["Round of 32: Won 2-0 vs Bosnia & Herzegovina", "Round of 16: Lost 1-4 vs Belgium"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            BIH: { name: "Bosnia & Herzegovina", flag: "https://flagcdn.com/ba.svg", prev: ["Round of 32: Lost 0-2 vs United States"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            BEL: { name: "Belgium", flag: "https://flagcdn.com/be.svg", prev: ["Round of 32: Won 3-2 vs Senegal", "Round of 16: Won 4-1 vs United States"], next: "Scheduled: Quarter-Finals vs Spain<br><span class='text-amber-400 font-bold'>11 Jul, 1:00 AM BD Time</span>" },
+            SEN: { name: "Senegal", flag: "https://flagcdn.com/sn.svg", prev: ["Round of 32: Lost 2-3 vs Belgium"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            BRA: { name: "Brazil", flag: "https://flagcdn.com/br.svg", prev: ["Round of 32: Won 2-1 vs Japan", "Round of 16: Lost 1-2 vs Norway"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            JPN: { name: "Japan", flag: "https://flagcdn.com/jp.svg", prev: ["Round of 32: Lost 1-2 vs Brazil"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            CIV: { name: "Ivory Coast", flag: "https://flagcdn.com/ci.svg", prev: ["Round of 32: Lost 1-2 vs Norway"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            NOR: { name: "Norway", flag: "https://flagcdn.com/no.svg", prev: ["Round of 32: Won 2-1 vs Ivory Coast", "Round of 16: Won 2-1 vs Brazil"], next: "Scheduled: Quarter-Finals vs England<br><span class='text-amber-400 font-bold'>12 Jul, 3:00 AM BD Time</span>" },
+            MEX: { name: "Mexico", flag: "https://flagcdn.com/mx.svg", prev: ["Round of 32: Won 2-0 vs Ecuador", "Round of 16: Lost 2-3 vs England"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            ECU: { name: "Ecuador", flag: "https://flagcdn.com/ec.svg", prev: ["Round of 32: Lost 0-2 vs Mexico"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            ENG: { name: "England", flag: "https://flagcdn.com/gb-eng.svg", prev: ["Round of 32: Won 2-1 vs DR Congo", "Round of 16: Won 3-2 vs Mexico"], next: "Scheduled: Quarter-Finals vs Norway<br><span class='text-amber-400 font-bold'>12 Jul, 3:00 AM BD Time</span>" },
+            COD: { name: "DR Congo", flag: "https://flagcdn.com/cd.svg", prev: ["Round of 32: Lost 1-2 vs England"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            ARG: { name: "Argentina", flag: "https://flagcdn.com/ar.svg", prev: ["Round of 32: Won 3-2 vs Cape Verde", "Round of 16: Won 3-2 vs Egypt"], next: "Scheduled: Quarter-Finals vs Switzerland<br><span class='text-amber-400 font-bold'>12 Jul, 7:00 AM BD Time</span>" },
+            CPV: { name: "Cape Verde", flag: "https://flagcdn.com/cv.svg", prev: ["Round of 32: Lost 2-3 vs Argentina"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            AUS: { name: "Australia", flag: "https://flagcdn.com/au.svg", prev: ["Round of 32: Drew 1-1 vs Egypt (Lost 2-4 on penalty shootout)"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            EGY: { name: "Egypt", flag: "https://flagcdn.com/eg.svg", prev: ["Round of 32: Drew 1-1 vs Australia (Won 4-2 on penalty shootout)", "Round of 16: Lost 2-3 vs Argentina"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            SUI: { name: "Switzerland", flag: "https://flagcdn.com/ch.svg", prev: ["Round of 32: Won 2-0 vs Algeria", "Round of 16: Drew 0-0 vs Colombia (Won 4-3 on penalty shootout)"], next: "Scheduled: Quarter-Finals vs Argentina<br><span class='text-amber-400 font-bold'>12 Jul, 7:00 AM BD Time</span>" },
+            ALG: { name: "Algeria", flag: "https://flagcdn.com/dz.svg", prev: ["Round of 32: Lost 0-2 vs Switzerland"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" },
+            COL: { name: "Colombia", flag: "https://flagcdn.com/co.svg", prev: ["Round of 32: Won 1-0 vs Ghana", "Round of 16: Drew 0-0 vs Switzerland (Lost 3-4 on penalty shootout)"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 16" },
+            GHA: { name: "Ghana", flag: "https://flagcdn.com/gh.svg", prev: ["Round of 32: Lost 0-1 vs Colombia"], next: "<span class='text-red-400 font-semibold'>Eliminated</span> in Round of 32" }
+        };
+
+        function openModal(id) {
+            const team = tournamentDb[id];
+            if(!team) return;
+            document.getElementById('mName').innerText = team.name;
+            document.getElementById('mFlag').src = team.flag;
+            document.getElementById('mNext').innerHTML = team.next;
+            
+            const histBox = document.getElementById('mHistory');
+            histBox.innerHTML = '';
+            team.prev.forEach(m => {
+                histBox.innerHTML += `<div class='bg-slate-900 p-2.5 rounded border border-slate-800 text-slate-200 shadow-inner flex items-center gap-2'><span class='text-amber-400 text-xs'>⚡</span>${m}</div>`;
+            });
+            
+            document.getElementById('infoModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.add('hidden');
+        }
+
+        document.getElementById('infoModal').addEventListener('click', function(e) {
+            if(e.target === this) closeModal();
+        });
+    </script>
+</body>
+</html>
